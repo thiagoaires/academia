@@ -2,9 +2,9 @@ import 'package:apirest/repository/i_user_repository.dart';
 import 'package:get/get.dart';
 
 class HttpController extends GetxController with StateMixin {
-  final IUserRepository _repository;
+  final IUserRepository _httpRepository;
 
-  HttpController(this._repository);
+  HttpController(this._httpRepository);
 
   @override
   void onInit() {
@@ -12,13 +12,14 @@ class HttpController extends GetxController with StateMixin {
     findUsers();
   }
 
-  void findUsers() async {
+  Future<void> findUsers() async {
     change([], status: RxStatus.loading());
     try {
-      final dados = await _repository.findAllusers();
+      final dados = await _httpRepository.findAllUsers();
       change(dados, status: RxStatus.success());
-    } on Exception catch (e) {
-      change([], status: RxStatus.error('Erro ao buscar usuarios'));
+    } catch (e) {
+      print(e);
+      change([], status: RxStatus.error('Erro ao buscar usuários'));
     }
   }
 }

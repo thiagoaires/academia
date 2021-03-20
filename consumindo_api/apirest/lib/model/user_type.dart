@@ -18,8 +18,8 @@ class UserType {
 
   factory UserType.fromMap(Map<String, dynamic> map) {
     return UserType(
-      id: map['id'],
-      name: map['name'],
+      id: map['id'] ?? '',
+      name: map['name'] ?? '',
     );
   }
 

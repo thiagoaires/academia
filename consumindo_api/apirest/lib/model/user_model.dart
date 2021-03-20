@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:apirest/model/user_type.dart';
+
 class UserModel {
   String id;
   String name;
   String username;
-  List<UserModel> types;
+  List<UserType> types;
 
   UserModel({
     this.id,
@@ -18,17 +20,20 @@ class UserModel {
       'id': id,
       'name': name,
       'username': username,
-      'types': types?.map((x) => x.toMap())?.toList(),
+      'user_types': types?.map((x) => x?.toMap())?.toList(),
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+
     return UserModel(
-      id: map['id'],
-      name: map['name'],
-      username: map['username'],
-      types:
-          List<UserModel>.from(map['types']?.map((x) => UserModel.fromMap(x))),
+      id: map['id'] ?? '',
+      name: map['name'] ?? '',
+      username: map['username'] ?? '',
+      types: List<UserType>.from(
+          map['user_types']?.map((x) => UserType.fromMap(x) ?? UserType()) ??
+              const []),
     );
   }
 
