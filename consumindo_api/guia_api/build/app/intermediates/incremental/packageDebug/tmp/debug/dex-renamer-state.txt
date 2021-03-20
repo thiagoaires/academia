@@ -1,0 +1,4 @@
+#Sat Mar 20 19:26:30 BRT 2021
+base.0=/home/thiago/Documents/academia/consumindo_api/guia_api/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
