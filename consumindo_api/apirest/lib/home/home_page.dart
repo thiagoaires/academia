@@ -15,11 +15,18 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextButton(
-                onPressed: () => Get.toNamed('/http'),
+              onPressed: () => Get.toNamed('/http'),
+              child: Text(
+                'http',
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            TextButton(
+                onPressed: () => Get.toNamed('/dio'),
                 child: Text(
-                  'http',
+                  'Dio',
                   style: TextStyle(fontSize: 20),
-                )),
+                ))
           ],
         ),
       ),
