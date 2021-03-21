@@ -8,7 +8,6 @@ class DioController extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     findUsers();
   }

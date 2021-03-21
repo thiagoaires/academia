@@ -15,8 +15,9 @@ class DioPage extends GetView<DioController> {
           itemCount: state.length,
           itemBuilder: (context, index) {
             final UserModel item = state[index];
-            ListTile(
+            return ListTile(
               title: Text(item.name),
+              subtitle: Text(item.username),
             );
           },
         );
