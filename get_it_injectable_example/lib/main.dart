@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:get_it_injectable_example/app/core/service_locator.dart';
+import 'package:get_it_injectable_example/app/models/random_factory_model.dart';
+import 'package:get_it_injectable_example/app/models/random_singleton_model.dart';
 
 void main() {
+  configureDependencies();
   runApp(MyApp());
 }
 
@@ -27,6 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int id = 0;
+  String name = '';
   int _counter = 0;
 
   void _incrementCounter() {
@@ -45,12 +52,29 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+            Text('$id'),
+            Text('$name'),
+            Divider(),
+            TextButton(
+              onPressed: () {
+                final instance = GetIt.I.get<RandomFactoryModel>();
+                setState(() {
+                  id = instance.id;
+                  name = instance.name;
+                });
+              },
+              child: Text('Factory'),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            Divider(),
+            TextButton(
+              onPressed: () {
+                final instance = GetIt.I.get<RandomSingletonModel>();
+                setState(() {
+                  id = instance.id;
+                  name = instance.name;
+                });
+              },
+              child: Text('Singleton'),
             ),
           ],
         ),
